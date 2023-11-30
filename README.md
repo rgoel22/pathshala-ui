@@ -1,1 +1,2 @@
-# pathshala-ui
+# PathShala-UI
+E Learning Management System
