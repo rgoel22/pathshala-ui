@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+
 import { Link } from "react-router-dom";
 import Container from "@mui/material/Container";
 import { UserContext, useUser } from "../context/user/user.context";
@@ -13,11 +14,6 @@ const AdminPage = () => {
   const { user, logout } = useUser();
   const { changeUser } = useContext(UserContext);
 
-  const handleLogout = useCallback(() => {
-    // logout();
-    changeUser(null);
-    console.log("Logout clicked");
-  }, []);
 
   return (
     <div className="admin-page">

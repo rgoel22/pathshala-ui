@@ -6,21 +6,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Paper from "@mui/material/Paper";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 import Loading from "./Loading";
 import { useLoading } from "../context/loadingContext";
+import { useParams } from "react-router-dom";
 
-const MyTable = () => {
+const EnrolledStudents = () => {
   var user = JSON.parse(localStorage.getItem("user"));
   const [data, setData] = useState([]);
+  const { courseId } = useParams();
   const { loading, setLoading } = useLoading();
 
   useEffect(() => {
     setLoading(true);
     // Fetch data from the API when the component mounts
-    fetch("https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/user/getStudent", {
+    fetch(`https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/user/getEnrolledStudents/${courseId}`, {
       headers: {
         "Content-Type": "application/json",
         "authorization-token": localStorage.getItem("token"),
@@ -78,16 +78,6 @@ const MyTable = () => {
                 {headers.map((header, index) => {
                   return <TableCell key={index}>{row[header[0]]}</TableCell>;
                 })}
-
-                <TableCell>
-                  <IconButton
-                    color="secondary"
-                    aria-label="delete"
-                    onClick={() => handleDeleteClick(row.userId)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -97,4 +87,4 @@ const MyTable = () => {
   );
 };
 
-export default MyTable;
+export default EnrolledStudents;

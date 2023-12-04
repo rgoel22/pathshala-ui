@@ -25,14 +25,18 @@ export default function SignIn(props) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const body = {
+        var body = {
             userId: data.get('userid'),
             password: data.get('password'),
+            ip: ""
         };
 
         setLoading(true);
 
         try {
+            const ip = await fetch("https://api.ipify.org/?format=json").then((response) => response.json())
+            .then(data => body.ip = data.ip)
+
             const response = await fetch(
                 "https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/user/login",
                 {
@@ -48,14 +52,23 @@ export default function SignIn(props) {
                 setAlert('Login success!', 'success')
                 const data = await response.json();
                 localStorage.setItem('user', JSON.stringify(data));
+                let auth = {};
+                auth.loggedInUserId = data.userId;
+                auth.userType = data.userType;
+                auth.token = data.token;
+                localStorage.setItem('auth', JSON.stringify(auth));
+                localStorage.setItem('userId', data.userId);
+                localStorage.setItem('userType', data.userType);
+                localStorage.setItem('token', data.token);
                 if (data.userType === USER_TYPES.ADMIN) {
                     changeUser(data);
                     navigate("/admin");
                 } else if (data.userType === USER_TYPES.INSTRUCTOR) {
                     changeUser(data);
-                    navigate(`/instructor/${data.userId}`);
+                    navigate(`/instructor`);
                 } else if (data.userType === USER_TYPES.STUDENT) {
                     changeUser(data);
+                    navigate(`/student`);
                 }
             } else {
                 // Handle unsuccessful login
