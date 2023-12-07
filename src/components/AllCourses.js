@@ -79,7 +79,7 @@ const AllCourses = () => {
                     sx={{ width: "auto", height: "auto" }}
                     variant="square"
                   />
-                  <Typography variant="body2" sx={{ color: "#333333" ,minHeight:'6vw', maxHeight:'6vw'}}>
+                  <Typography variant="body2" sx={{ color: "#333333" ,minHeight:'10vw', maxHeight:'10vw'}}>
                     {course.description}
                   </Typography>
                 </CardContent>
