@@ -89,6 +89,9 @@ const InstructorTable = () => {
         data.splice(data.indexOf(modalData), 1)
         setAlert(`${modalData.firstName} ${modalData.lastName} deleted`, 'success')
         setShowDeleteConfirm(false)
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
       }).catch((err) => {
         setAlert(`Error in deleting ${modalData.firstName} ${modalData.lastName}`, 'error')
         setShowDeleteConfirm(false)
@@ -148,6 +151,9 @@ const InstructorTable = () => {
       })
       .catch((err) => console.log(err));
     handleModalClose();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   // Assuming data is an array of objects with fields like 'firstName', 'lastName', 'email', 'phoneNumber', etc.
@@ -227,8 +233,8 @@ const InstructorTable = () => {
             fullWidth
             margin="normal"
             required  // Adding the required attribute
-            error={!modalData.firstName} // Checking for the presence of the first name
-            helperText={!modalData.firstName ? 'First name is required' : ''} // Error message when the field is empty
+            error={modalData.firstName === ''}
+            helperText={modalData.firstName === '' ? 'First name is required' : ' '}
           />
 
           <TextField
@@ -238,8 +244,8 @@ const InstructorTable = () => {
             fullWidth
             margin="normal"
             required // Adding the required attribute
-            error={!modalData.lastName} // Checking for the presence of the last name
-            helperText={!modalData.lastName ? 'Last Name is required' : ''} // Error message when the field is empty
+            error={modalData.lastName === ''}
+            helperText={modalData.lastName === '' ? 'Last Name is required' : ' '}
           />
 
           <TextField
@@ -255,8 +261,8 @@ const InstructorTable = () => {
               pattern: '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}',
               title: 'Please enter a valid email address'
             }}
-            error={!modalData.emailId || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(modalData.emailId)}
-            helperText={!modalData.emailId || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(modalData.emailId) ? 'Please enter a valid email address' : ''}
+            error={modalData.emailId === ''}
+            helperText={modalData.emailId === '' ? 'Please enter a valid email address' : ' '}
           />
 
 
@@ -264,7 +270,7 @@ const InstructorTable = () => {
             label="Phone Number"
             value={modalData.phoneNumber || ''}
             onChange={(e) => {
-              const re = /^[0-9\b]+$/; // Regex to allow only numbers
+              const re = /^[0-9\b]+$/; 
               if (e.target.value === '' || re.test(e.target.value)) {
                 setModalData({ ...modalData, phoneNumber: e.target.value });
               }
@@ -272,12 +278,12 @@ const InstructorTable = () => {
             fullWidth
             margin="normal"
             required
-            error={!modalData.phoneNumber}
-            helperText={!modalData.phoneNumber ? 'Phone Number is required' : ''}
+            error={modalData.phoneNumber === ''}
+            helperText={modalData.phoneNumber === '' ? 'Phone Number is required' : ' '}
             inputProps={{
               inputMode: 'numeric',
               pattern: '[0-9]*',
-              maxLength: 10, // Optional: set maximum length if needed
+              maxLength: 10, 
             }}
           />
 
