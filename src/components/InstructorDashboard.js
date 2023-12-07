@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../context/user/user.context";
+import { useNavigate } from "react-router-dom";
 import {
   Avatar,
   Box,
@@ -13,7 +10,6 @@ import {
   CardContent,
   Dialog,
   Grid,
-  IconButton,
 } from "@mui/material";
 import CourseDetails from "./CourseDetails";
 
@@ -37,18 +33,14 @@ const InstructorDashboard = () => {
   };
 
   useEffect(() => {
-    fetch(
-      "https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/courses/instructor?userId=" +
-        localStorage.getItem("userId"),
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "authorization-token": localStorage.getItem("token"),
-          "userId": localStorage.getItem("userId"),
-          "userType": localStorage.getItem("userType"),
-        },
+    fetch('https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/courses/getUnEnrolledCourses?userId='+localStorage.getItem("userId"), {
+      headers: {
+        "Content-Type": "application/json",
+        "authorization-token": localStorage.getItem("token"),
+        "userId": localStorage.getItem("userId"),
+        "userType": localStorage.getItem("userType"),
       }
-    )
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -72,7 +64,7 @@ const InstructorDashboard = () => {
               <Box sx={{ minWidth: 275 }}>
                 <Card variant="outlined">
                   <CardContent>
-                    <Typography variant="h5" component="div">
+                    <Typography variant="h5" component="div" sx={{ color: "#d32f2f" }}>
                       {course.name}
                     </Typography>
                     <Avatar
@@ -81,16 +73,17 @@ const InstructorDashboard = () => {
                       sx={{ width: "auto", height: "auto" }}
                       variant="square"
                     />
-                    <Typography variant="body2">
+                    <Typography variant="body2" style={{minHeight:'6vw', maxHeight:'6vw'}}>
                       {course.description}
                     </Typography>
                   </CardContent>
-                  <CardActions sx={{ justifyContent: "end" }}>
+                  <CardActions sx={{ justifyContent: "flex-end" }}>
                     <Button
                       size="small"
                       color="primary"
                       variant="outlined"
                       onClick={() => handleViewCourse(course)}
+                      sx={{ backgroundColor: "#d32f2f", color: "#ffffff" }}
                     >
                       View Course
                     </Button>

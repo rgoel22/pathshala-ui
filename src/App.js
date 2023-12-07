@@ -1,5 +1,5 @@
 import "./App.css";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { CoursesProvider, RouterProvider, UserProvider } from "./context";
 import { RouterContext } from "./context/routing/router.context";
 import { UserContext } from "./context/user/user.context";
@@ -21,19 +21,11 @@ import StudentsDashboard from "./components/StudentsDashboard";
 import CourseDetails from "./components/CourseDetails";
 import AllCourses from "./components/AllCourses";
 import EnrolledStudents from "./components/EnrolledStudents";
-
+import StudentCourseDetails from "./components/StudentCourseDetails";
 import MainLoading from './components/MainLoading';
 
 
-function CourseForm(props) {
-  const { name, description } = props;
-  console.log(props);
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
-}
+
 
 // function CourseDetails1(props) {
 //   const { id } = props;
@@ -130,7 +122,7 @@ function PrivateRoute(props) {
 function App() {
   const location = useLocation();
   return (
-    <MainLoading imageSrc={require("./assets/images/pathshala.jpg")}>
+    <MainLoading imageSrc={require("./assets/images/pathshala_bg.png")}>
       <LoadingProvider>
         <RouterProvider>
           <UserProvider>
@@ -143,6 +135,7 @@ function App() {
                   <Route path="/instructor" element={<InstructorDashboard />} />
                   <Route path="/instructor/courseDetails/:courseId" element={<CourseDetails />} />
                   <Route path="/student" element={<StudentsDashboard />} />
+                  <Route path="/student/courseDetails/:courseId" element={<StudentCourseDetails />} />
                   <Route path="/signup" element={<SignUp />} />
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/admin/manageUsers" element={<ManageUsers />} />
