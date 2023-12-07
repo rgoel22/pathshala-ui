@@ -37,7 +37,7 @@ const InstructorDashboard = () => {
   };
 
   useEffect(() => {
-    fetch('https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/courses/getUnEnrolledCourses?userId='+localStorage.getItem("userId"), {
+    fetch('https://pathshala-api-8e4271465a87.herokuapp.com/pathshala/courses/instructor?userId='+localStorage.getItem("userId"), {
       headers: {
         "Content-Type": "application/json",
         "authorization-token": localStorage.getItem("token"),
