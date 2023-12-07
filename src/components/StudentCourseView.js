@@ -43,7 +43,6 @@ const StudentCourseView = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("API response:", data);
         setCourse(data);
       })
       .catch((error) => console.error("API error:", error));

@@ -92,7 +92,6 @@ const CourseTable = () => {
       }
     })
       .then(response => response.json()).then(result => {
-        console.log(result);
         setAutocompleteData(result);
         setLoading(false);
       })
@@ -141,15 +140,11 @@ const CourseTable = () => {
 
       },
       body: JSON.stringify(newModalData)
-    }).then((res) => res.json()).then(newRow => {
-      setData(prev => {
-        return prev.map(d => {
-          if (newRow.id === d.id) return newModalData;
-          else return d;
-        })
-      });
-    }).catch((err) => console.log(err))
+    }).then((res) => res.json()).catch((err) => console.log(err))
     handleModalClose();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   const handleDeleteConfirm = () => {
