@@ -182,6 +182,7 @@ const CourseTable = () => {
 
 
   // Assuming data is an array of objects with fields like 'name', 'courseCode' etc.
+  let userId;
   const headers = [["name", 'Name'], ["courseCode", 'Course Code'], ["description", 'Description'], ["syllabus", 'Syllabus'],
   ['instructorName', 'Instructor Name']];
 
@@ -237,6 +238,9 @@ const CourseTable = () => {
             onChange={(e) => setModalData({ ...modalData, name: e.target.value })}
             fullWidth
             margin="normal"
+            required  
+            error={modalData.name === ''}
+            helperText={modalData.name === '' ? 'First name is required' : ' '}
           />
           <TextField
             label="Course Code"
@@ -244,6 +248,9 @@ const CourseTable = () => {
             onChange={(e) => setModalData({ ...modalData, courseCode: e.target.value })}
             fullWidth
             margin="normal"
+            required  
+            error={modalData.courseCode === ''}
+            helperText={modalData.courseCode === '' ? 'Course code is required' : ' '}
           />
           <TextField
             label="Description"

@@ -1,5 +1,5 @@
 import "./App.css";
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { CoursesProvider, RouterProvider, UserProvider } from "./context";
 import { RouterContext } from "./context/routing/router.context";
 import { UserContext } from "./context/user/user.context";
@@ -23,9 +23,18 @@ import AllCourses from "./components/AllCourses";
 import EnrolledStudents from "./components/EnrolledStudents";
 import StudentCourseDetails from "./components/StudentCourseDetails";
 import MainLoading from './components/MainLoading';
+import StudentCourseView from "./components/StudentCourseView";
 
 
-
+function CourseForm(props) {
+  const { name, description } = props;
+  console.log(props);
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
+}
 
 // function CourseDetails1(props) {
 //   const { id } = props;
@@ -146,6 +155,7 @@ function App() {
                   <Route path="/admin/courses" element={<AddCourse />} />
                   <Route path="/student/allCourses" element={<AllCourses />} />
                   <Route path="/instructor/courseDetails/enrolledStudents/:courseId" element={<EnrolledStudents />} />
+                  <Route path="/student/viewCourse/:courseId" element={<StudentCourseView/>} />
                 </Routes>
               </AlertProvider>
             </CoursesProvider>

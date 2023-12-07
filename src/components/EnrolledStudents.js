@@ -10,6 +10,23 @@ import Typography from "@mui/material/Typography";
 import Loading from "./Loading";
 import { useLoading } from "../context/loadingContext";
 import { useParams, useNavigate } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import { useUser } from "../context/user/user.context";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Dialog,
+  Grid,
+  IconButton,
+} from "@mui/material";
+import CourseDetails from "./CourseDetails";
 
 const EnrolledStudents = () => {
   const buttonStyle = {

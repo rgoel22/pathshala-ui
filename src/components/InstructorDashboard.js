@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/user/user.context";
 import {
   Avatar,
   Box,
@@ -10,6 +13,7 @@ import {
   CardContent,
   Dialog,
   Grid,
+  IconButton,
 } from "@mui/material";
 import CourseDetails from "./CourseDetails";
 

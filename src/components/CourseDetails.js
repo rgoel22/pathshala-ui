@@ -15,6 +15,18 @@ const CourseDetails = () => {
   const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
 
+  const buttonStyle = {
+    backgroundColor: "#007bff",
+    color: "#fff",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    fontWeight: "bold",
+    transition: "all 0.2s ease-in-out",
+    marginLeft: "10px", // Add margin-left to create horizontal space
+  };
+
   const commonButtonStyle = {
     padding: "12px 24px",
     borderRadius: "5px",
