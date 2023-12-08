@@ -63,50 +63,66 @@ const AllCourses = () => {
         </Toolbar>
         </AppBar>
 
-      <Grid container spacing={8} height="100vh" direction="row" alignItems="center" p={10}>
-        {courses.map((course) => (
-          <Grid item xs={4} key={course.id}>
-            <Box sx={{ minWidth: 275 }}>
-              <Card variant="outlined">
-                <CardContent>
-                  <Typography variant="h5" component="div" sx={{ color: "#d32f2f" }}>
-                    {course.name}
-                  </Typography>
-                  <Avatar
-                    alt='allCourses'
-                    src={require("../assets/images/allCourse.jpg")}
-                    sx={{ width: "auto", height: "auto" }}
-                    variant="square"
-                  />
+        <Grid container spacing={8} height="100vh" direction="row" alignItems="center" p={10}>
+            {
+                courses.length === 0 ? (<Typography
+                    variant="h6"
+                    sx={{
+                        textAlign: "center",
+                        marginTop: "10px", // reduced top margin
+                        gridColumn: "1 / -1",
+                        fontSize: "1.5rem", // larger font size
+                        fontWeight: "bold", // bold font weight
+                    }}
+                >
+                    No Courses are published yet by your instructors. Check after some time!!
+                </Typography>) :(
+
+
+
+                    courses.map((course) => (
+                        <Grid item xs={4} key={course.id}>
+                            <Box sx={{ minWidth: 275 }}>
+                                <Card variant="outlined">
+                                    <CardContent>
+                                        <Typography variant="h5" component="div" sx={{ color: "#d32f2f" }}>
+                                            {course.name}
+                                        </Typography>
+                                        <Avatar
+                                            alt='allCourses'
+                                            src={require("../assets/images/allCourse.jpg")}
+                                            sx={{ width: "auto", height: "auto" }}
+                                            variant="square"
+                                        />
                   <Typography variant="body2" sx={{ color: "#333333" ,minHeight:'10vw', maxHeight:'10vw'}}>
-                    {course.description}
-                  </Typography>
-                </CardContent>
-                <CardActions sx={{ justifyContent: 'flex-end' }}>
-                <Button
-                    size="small"
-                    color="primary"
-                    variant="contained"
-                    sx={{ backgroundColor: "#d32f2f", color: "#ffffff" }}
-                    onClick={()=> handleViewCourse(course)}
-                  >
-                    View Course
-                  </Button>
-                  <Button
-                    size="small"
-                    color="primary"
-                    variant="contained"
-                    sx={{ backgroundColor: "#d32f2f", color: "#ffffff" }}
-                    onClick={()=> handleEnrollCourse(course)}
-                  >
-                    Enroll
-                  </Button>
-                </CardActions>
-              </Card>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
+                                            {course.description}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions sx={{ justifyContent: 'flex-end' }}>
+                                        <Button
+                                            size="small"
+                                            color="primary"
+                                            variant="contained"
+                                            sx={{ backgroundColor: "#d32f2f", color: "#ffffff" }}
+                                            onClick={()=> handleViewCourse(course)}
+                                        >
+                                            View Course
+                                        </Button>
+                                        <Button
+                                            size="small"
+                                            color="primary"
+                                            variant="contained"
+                                            sx={{ backgroundColor: "#d32f2f", color: "#ffffff" }}
+                                            onClick={()=> handleEnrollCourse(course)}
+                                        >
+                                            Enroll
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Box>
+                        </Grid>
+                    )))}
+        </Grid>
     </>
   );
 };
